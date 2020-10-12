@@ -174,7 +174,7 @@
 <script>
 import firebase from 'firebase/app'
 // import CollectionText from '~/components/CollectionText.vue'
-// import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import { db } from '~/plugins/firebaseConfig.js'
 export default {
   // components: {
@@ -182,6 +182,9 @@ export default {
   // },
   data () {
     return {
+      valid: null,
+      menu1: null,
+      menu2: null,
       name: null,
       lastname: null,
       email: null,
@@ -196,9 +199,9 @@ export default {
       dialog: false
     }
   },
-  // computed: {
-  //   ...mapGetters(['data'])
-  // },
+  computed: {
+    ...mapGetters(['data'])
+  },
 
   methods: {
     addData () {

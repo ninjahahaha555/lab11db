@@ -1,8 +1,21 @@
 <template>
-  <v-card class="mt-5">
-    <v-card v-for="(item,key) in textList" :key="key" class="pa-2" outlined tile>
-      {{ item.name }} {{ item.lastname }} {{ item.email }} {{ item.checkin }} {{ item.checkout }} {{ item.sumroom }} {{ item.sumperson }}
-    </v-card>
+  <v-card>
+    <v-card-title>
+      ข้อมูลการจอง
+      <v-spacer />
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Search"
+        single-line
+        hide-details
+      />
+    </v-card-title>
+    <v-data-table
+      :headers="headers"
+      :items="textList"
+      :search="search"
+    />
   </v-card>
 </template>
 
@@ -13,7 +26,22 @@ import {
 export default {
   data () {
     return {
-      textList: []
+      textList: [],
+      search: '',
+      headers: [
+        {
+          text: 'ชื่อ',
+          align: 'start',
+          sortable: false,
+          value: 'name'
+        },
+        { text: 'นามสกุล', value: 'lastname' },
+        { text: 'E-mail', value: 'email' },
+        { text: 'วันเช็คอิน', value: 'checkin' },
+        { text: 'วันเช็คเอาท์', value: 'checkout' },
+        { text: 'จำนวนห้อง', value: 'sumroom' },
+        { text: 'จำนวนผู้เข้าพัก', value: 'sumperson' }
+      ]
     }
   },
   created () {
